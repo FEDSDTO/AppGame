@@ -1,0 +1,763 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GiftsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Coupon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MallId" Type="varchar" MaxLength="5" />
+          <Property Name="MemberId" Type="varchar" MaxLength="20" />
+          <Property Name="GId" Type="int" />
+          <Property Name="CouponNo" Type="varchar" MaxLength="20" />
+          <Property Name="UsedStart" Type="datetime" />
+          <Property Name="UsedEnd" Type="datetime" />
+          <Property Name="CreateOn" Type="datetime" />
+          <Property Name="Status" Type="varchar" MaxLength="5" />
+          <Property Name="Type" Type="varchar" MaxLength="5" />
+          <Property Name="Source" Type="varchar" MaxLength="5" />
+          <Property Name="UsedMallId" Type="varchar" MaxLength="5" />
+          <Property Name="UsedDepartment" Type="varchar" MaxLength="10" />
+          <Property Name="UsedDate" Type="datetime" />
+          <Property Name="ModifyUser" Type="int" />
+          <Property Name="recordKey" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Coupon_Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MallId" Type="varchar" MaxLength="5" />
+          <Property Name="MemberId" Type="varchar" MaxLength="20" />
+          <Property Name="GId" Type="int" />
+          <Property Name="CouponNo" Type="varchar" MaxLength="20" />
+          <Property Name="CreateOn" Type="datetime" />
+          <Property Name="Status" Type="varchar" MaxLength="5" />
+          <Property Name="UsedMallId" Type="varchar" MaxLength="5" />
+          <Property Name="UsedDepartment" Type="varchar" MaxLength="10" />
+          <Property Name="UsedDate" Type="datetime" />
+          <Property Name="ModifyUser" Type="int" />
+          <Property Name="recordKey" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MainNo" Type="varchar" MaxLength="10" />
+          <Property Name="MiddleNo" Type="varchar" MaxLength="10" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="DepartmentNo" Type="varchar" MaxLength="10" />
+          <Property Name="ModifyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="EntityPresent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberId" Type="varchar" MaxLength="20" />
+          <Property Name="MallId" Type="varchar" MaxLength="5" />
+          <Property Name="GId" Type="int" />
+          <Property Name="CouponNo" Type="varchar" MaxLength="20" />
+          <Property Name="Status" Type="varchar" MaxLength="5" />
+          <Property Name="UsedStart" Type="datetime" />
+          <Property Name="UsedEnd" Type="datetime" />
+          <Property Name="CreateOn" Type="datetime" />
+          <Property Name="UsedDate" Type="datetime" />
+          <Property Name="UsedDepartment" Type="varchar" MaxLength="10" />
+          <Property Name="ModifyUser" Type="int" />
+        </EntityType>
+        <EntityType Name="Gifts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Year" Type="varchar" MaxLength="5" />
+          <Property Name="MallId" Type="varchar" MaxLength="5" />
+          <Property Name="ActivityId" Type="int" />
+          <Property Name="GiftsNo" Type="varchar" MaxLength="12" />
+          <Property Name="StartNo" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Denomination" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Type" Type="varchar" MaxLength="5" />
+          <Property Name="MallType" Type="varchar" MaxLength="5" />
+          <Property Name="IsPlus" Type="bit" />
+          <Property Name="CreateOn" Type="datetime" />
+          <Property Name="ModifyUser" Type="int" />
+          <Property Name="ModifyTime" Type="datetime" />
+          <Property Name="IsUse" Type="bit" />
+          <Property Name="CaseNumber" Type="varchar" MaxLength="100" />
+          <Property Name="SAPType" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="HGRecord">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MallId" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="MemberId" Type="varchar" MaxLength="20" />
+          <Property Name="Type" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="InvoiceNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="InvoiceTime" Type="datetime" />
+          <Property Name="HappyGoCardNo" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="Point" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="DepartmentNo" Type="nvarchar" MaxLength="10" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreateOn" Type="datetime" Nullable="false" />
+          <Property Name="GiveTime" Type="nvarchar" MaxLength="50" />
+          <Property Name="ModifyUser" Type="int" />
+          <Property Name="HGMId" Type="bigint" />
+          <Property Name="SupervisorUser" Type="nvarchar" MaxLength="5" />
+          <Property Name="WillGiveTime" Type="datetime" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="100" />
+          <Property Name="FinishTime" Type="datetime" />
+          <Property Name="LimitActivityNo" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="HGRecord_Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MallId" Type="varchar" MaxLength="5" />
+          <Property Name="MemberId" Type="varchar" MaxLength="20" />
+          <Property Name="Type" Type="varchar" MaxLength="5" />
+          <Property Name="InvoiceNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="InvoiceTime" Type="datetime" />
+          <Property Name="HappyGoCardNo" Type="nvarchar" MaxLength="16" />
+          <Property Name="Point" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="DepartmentNo" Type="nvarchar" MaxLength="10" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreateOn" Type="datetime" />
+          <Property Name="GiveTime" Type="nvarchar" MaxLength="50" />
+          <Property Name="ModifyUser" Type="int" />
+          <Property Name="HGMId" Type="bigint" />
+          <Property Name="LimitActivityNo" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="MainCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="30" />
+          <Property Name="CategoryNo" Type="varchar" MaxLength="10" />
+          <Property Name="ModifyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Mall">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MallId" Type="varchar" MaxLength="5" />
+          <Property Name="PosMallId" Type="varchar" MaxLength="5" />
+          <Property Name="BonusMall" Type="varchar" MaxLength="5" />
+          <Property Name="Name" Type="nvarchar" MaxLength="20" />
+          <Property Name="IsUse" Type="bit" />
+        </EntityType>
+        <EntityType Name="MiddleCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MainNo" Type="varchar" MaxLength="10" />
+          <Property Name="Name" Type="nvarchar" MaxLength="30" />
+          <Property Name="CategoryNo" Type="varchar" MaxLength="10" />
+          <Property Name="ModifyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PosToken">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Pos" Type="varchar" MaxLength="10" />
+          <Property Name="Token" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="SystemErrorLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PageName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Event" Type="nvarchar" MaxLength="500" />
+          <Property Name="ModifyUser" Type="varchar" MaxLength="5" />
+          <Property Name="ModifyTime" Type="datetime" />
+          <Property Name="IsUse" Type="bit" />
+        </EntityType>
+        <EntityType Name="SystemExchangeLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Controller" Type="nvarchar" MaxLength="50" />
+          <Property Name="AId" Type="bigint" />
+          <Property Name="Message" Type="nvarchar(max)" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="CreateUser" Type="int" />
+        </EntityType>
+        <EntityType Name="UsedRule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GId" Type="int" />
+          <Property Name="MallId" Type="varchar" MaxLength="5" />
+          <Property Name="StartNo" Type="int" />
+          <Property Name="LimitPrice" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="LimitQuantity" Type="int" />
+          <Property Name="UsedStart" Type="datetime" />
+          <Property Name="UsedEnd" Type="datetime" />
+          <Property Name="CreateOn" Type="datetime" />
+          <Property Name="ModifyUser" Type="int" />
+          <Property Name="ModifyTime" Type="datetime" />
+          <Property Name="IsUse" Type="bit" />
+          <Property Name="IsDeptContain" Type="bit" />
+          <Property Name="ExchangeStart" Type="datetime" />
+          <Property Name="ExchangeEnd" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_UsedRule_Gifts">
+          <End Role="Gifts" Type="Self.Gifts" Multiplicity="0..1" />
+          <End Role="UsedRule" Type="Self.UsedRule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gifts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsedRule">
+              <PropertyRef Name="GId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GiftsModelStoreContainer">
+          <EntitySet Name="Coupon" EntityType="Self.Coupon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Coupon_Log" EntityType="Self.Coupon_Log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EntityPresent" EntityType="Self.EntityPresent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gifts" EntityType="Self.Gifts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HGRecord" EntityType="Self.HGRecord" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HGRecord_Log" EntityType="Self.HGRecord_Log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MainCategory" EntityType="Self.MainCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mall" EntityType="Self.Mall" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MiddleCategory" EntityType="Self.MiddleCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PosToken" EntityType="Self.PosToken" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SystemErrorLog" EntityType="Self.SystemErrorLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SystemExchangeLog" EntityType="Self.SystemExchangeLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsedRule" EntityType="Self.UsedRule" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_UsedRule_Gifts" Association="Self.FK_UsedRule_Gifts">
+            <End Role="Gifts" EntitySet="Gifts" />
+            <End Role="UsedRule" EntitySet="UsedRule" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GiftsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Coupon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MallId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="MemberId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="GId" Type="Int32" />
+          <Property Name="CouponNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UsedStart" Type="DateTime" Precision="3" />
+          <Property Name="UsedEnd" Type="DateTime" Precision="3" />
+          <Property Name="CreateOn" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Type" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Source" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="UsedMallId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="UsedDepartment" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="UsedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifyUser" Type="Int32" />
+          <Property Name="recordKey" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Coupon_Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MallId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="MemberId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="GId" Type="Int32" />
+          <Property Name="CouponNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreateOn" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="UsedMallId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="UsedDepartment" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="UsedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifyUser" Type="Int32" />
+          <Property Name="recordKey" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MainNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MiddleNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DepartmentNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ModifyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="EntityPresent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MallId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="GId" Type="Int32" />
+          <Property Name="CouponNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="UsedStart" Type="DateTime" Precision="3" />
+          <Property Name="UsedEnd" Type="DateTime" Precision="3" />
+          <Property Name="CreateOn" Type="DateTime" Precision="3" />
+          <Property Name="UsedDate" Type="DateTime" Precision="3" />
+          <Property Name="UsedDepartment" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ModifyUser" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Gifts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Year" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="MallId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="ActivityId" Type="Int32" />
+          <Property Name="GiftsNo" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="StartNo" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Denomination" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Type" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="MallType" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="IsPlus" Type="Boolean" />
+          <Property Name="CreateOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifyUser" Type="Int32" />
+          <Property Name="ModifyTime" Type="DateTime" Precision="3" />
+          <Property Name="IsUse" Type="Boolean" />
+          <Property Name="CaseNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SAPType" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="UsedRule" Relationship="GiftsModel.FK_UsedRule_Gifts" FromRole="Gifts" ToRole="UsedRule" />
+        </EntityType>
+        <EntityType Name="HGRecord">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MallId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MemberId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Type" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="InvoiceNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="InvoiceTime" Type="DateTime" Precision="3" />
+          <Property Name="HappyGoCardNo" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Point" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DepartmentNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Remark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreateOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="GiveTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifyUser" Type="Int32" />
+          <Property Name="HGMId" Type="Int64" />
+          <Property Name="SupervisorUser" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="WillGiveTime" Type="DateTime" Precision="3" />
+          <Property Name="FileName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FinishTime" Type="DateTime" Precision="3" />
+          <Property Name="LimitActivityNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="HGRecord_Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MallId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="MemberId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Type" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="InvoiceNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="InvoiceTime" Type="DateTime" Precision="3" />
+          <Property Name="HappyGoCardNo" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="Point" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DepartmentNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Remark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreateOn" Type="DateTime" Precision="3" />
+          <Property Name="GiveTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifyUser" Type="Int32" />
+          <Property Name="HGMId" Type="Int64" />
+          <Property Name="LimitActivityNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="MainCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ModifyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Mall">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MallId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="PosMallId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="BonusMall" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="IsUse" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="MiddleCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MainNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ModifyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="SystemExchangeLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Controller" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AId" Type="Int64" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateUser" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="GiftsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Coupon" EntityType="Self.Coupon" />
+          <EntitySet Name="Coupon_Log" EntityType="Self.Coupon_Log" />
+          <EntitySet Name="Department" EntityType="Self.Department" />
+          <EntitySet Name="EntityPresent" EntityType="Self.EntityPresent" />
+          <EntitySet Name="Gifts" EntityType="Self.Gifts" />
+          <EntitySet Name="HGRecord" EntityType="Self.HGRecord" />
+          <EntitySet Name="HGRecord_Log" EntityType="Self.HGRecord_Log" />
+          <EntitySet Name="MainCategory" EntityType="Self.MainCategory" />
+          <EntitySet Name="Mall" EntityType="Self.Mall" />
+          <EntitySet Name="MiddleCategory" EntityType="Self.MiddleCategory" />
+          <EntitySet Name="SystemExchangeLog" EntityType="Self.SystemExchangeLog" />
+          <EntitySet Name="PosToken" EntityType="GiftsModel.PosToken" />
+          <EntitySet Name="SystemErrorLog" EntityType="GiftsModel.SystemErrorLog" />
+          <EntitySet Name="UsedRule" EntityType="GiftsModel.UsedRule" />
+          <AssociationSet Name="FK_UsedRule_Gifts" Association="GiftsModel.FK_UsedRule_Gifts">
+            <End Role="Gifts" EntitySet="Gifts" />
+            <End Role="UsedRule" EntitySet="UsedRule" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="PosToken">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Pos" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Token" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SystemErrorLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PageName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Event" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ModifyUser" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="ModifyTime" Type="DateTime" Precision="3" />
+          <Property Name="IsUse" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="UsedRule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GId" Type="Int32" />
+          <Property Name="MallId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="StartNo" Type="Int32" />
+          <Property Name="LimitPrice" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="LimitQuantity" Type="Int32" />
+          <Property Name="UsedStart" Type="DateTime" Precision="3" />
+          <Property Name="UsedEnd" Type="DateTime" Precision="3" />
+          <Property Name="CreateOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifyUser" Type="Int32" />
+          <Property Name="ModifyTime" Type="DateTime" Precision="3" />
+          <Property Name="IsUse" Type="Boolean" />
+          <Property Name="IsDeptContain" Type="Boolean" />
+          <Property Name="ExchangeStart" Type="DateTime" Precision="3" />
+          <Property Name="ExchangeEnd" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Gifts" Relationship="GiftsModel.FK_UsedRule_Gifts" FromRole="UsedRule" ToRole="Gifts" />
+        </EntityType>
+        <Association Name="FK_UsedRule_Gifts">
+          <End Type="GiftsModel.Gifts" Role="Gifts" Multiplicity="0..1" />
+          <End Type="GiftsModel.UsedRule" Role="UsedRule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gifts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsedRule">
+              <PropertyRef Name="GId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GiftsModelStoreContainer" CdmEntityContainer="GiftsEntities">
+          <EntitySetMapping Name="Coupon">
+            <EntityTypeMapping TypeName="GiftsModel.Coupon">
+              <MappingFragment StoreEntitySet="Coupon">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MallId" ColumnName="MallId" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="GId" ColumnName="GId" />
+                <ScalarProperty Name="CouponNo" ColumnName="CouponNo" />
+                <ScalarProperty Name="UsedStart" ColumnName="UsedStart" />
+                <ScalarProperty Name="UsedEnd" ColumnName="UsedEnd" />
+                <ScalarProperty Name="CreateOn" ColumnName="CreateOn" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="UsedMallId" ColumnName="UsedMallId" />
+                <ScalarProperty Name="UsedDepartment" ColumnName="UsedDepartment" />
+                <ScalarProperty Name="UsedDate" ColumnName="UsedDate" />
+                <ScalarProperty Name="ModifyUser" ColumnName="ModifyUser" />
+                <ScalarProperty Name="recordKey" ColumnName="recordKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Coupon_Log">
+            <EntityTypeMapping TypeName="GiftsModel.Coupon_Log">
+              <MappingFragment StoreEntitySet="Coupon_Log">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MallId" ColumnName="MallId" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="GId" ColumnName="GId" />
+                <ScalarProperty Name="CouponNo" ColumnName="CouponNo" />
+                <ScalarProperty Name="CreateOn" ColumnName="CreateOn" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UsedMallId" ColumnName="UsedMallId" />
+                <ScalarProperty Name="UsedDepartment" ColumnName="UsedDepartment" />
+                <ScalarProperty Name="UsedDate" ColumnName="UsedDate" />
+                <ScalarProperty Name="ModifyUser" ColumnName="ModifyUser" />
+                <ScalarProperty Name="recordKey" ColumnName="recordKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Department">
+            <EntityTypeMapping TypeName="GiftsModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MainNo" ColumnName="MainNo" />
+                <ScalarProperty Name="MiddleNo" ColumnName="MiddleNo" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DepartmentNo" ColumnName="DepartmentNo" />
+                <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EntityPresent">
+            <EntityTypeMapping TypeName="GiftsModel.EntityPresent">
+              <MappingFragment StoreEntitySet="EntityPresent">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="MallId" ColumnName="MallId" />
+                <ScalarProperty Name="GId" ColumnName="GId" />
+                <ScalarProperty Name="CouponNo" ColumnName="CouponNo" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UsedStart" ColumnName="UsedStart" />
+                <ScalarProperty Name="UsedEnd" ColumnName="UsedEnd" />
+                <ScalarProperty Name="CreateOn" ColumnName="CreateOn" />
+                <ScalarProperty Name="UsedDate" ColumnName="UsedDate" />
+                <ScalarProperty Name="UsedDepartment" ColumnName="UsedDepartment" />
+                <ScalarProperty Name="ModifyUser" ColumnName="ModifyUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gifts">
+            <EntityTypeMapping TypeName="GiftsModel.Gifts">
+              <MappingFragment StoreEntitySet="Gifts">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="MallId" ColumnName="MallId" />
+                <ScalarProperty Name="ActivityId" ColumnName="ActivityId" />
+                <ScalarProperty Name="GiftsNo" ColumnName="GiftsNo" />
+                <ScalarProperty Name="StartNo" ColumnName="StartNo" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Denomination" ColumnName="Denomination" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="MallType" ColumnName="MallType" />
+                <ScalarProperty Name="IsPlus" ColumnName="IsPlus" />
+                <ScalarProperty Name="CreateOn" ColumnName="CreateOn" />
+                <ScalarProperty Name="ModifyUser" ColumnName="ModifyUser" />
+                <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+                <ScalarProperty Name="IsUse" ColumnName="IsUse" />
+                <ScalarProperty Name="CaseNumber" ColumnName="CaseNumber" />
+                <ScalarProperty Name="SAPType" ColumnName="SAPType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HGRecord">
+            <EntityTypeMapping TypeName="GiftsModel.HGRecord">
+              <MappingFragment StoreEntitySet="HGRecord">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MallId" ColumnName="MallId" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+                <ScalarProperty Name="InvoiceTime" ColumnName="InvoiceTime" />
+                <ScalarProperty Name="HappyGoCardNo" ColumnName="HappyGoCardNo" />
+                <ScalarProperty Name="Point" ColumnName="Point" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="DepartmentNo" ColumnName="DepartmentNo" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="CreateOn" ColumnName="CreateOn" />
+                <ScalarProperty Name="GiveTime" ColumnName="GiveTime" />
+                <ScalarProperty Name="ModifyUser" ColumnName="ModifyUser" />
+                <ScalarProperty Name="HGMId" ColumnName="HGMId" />
+                <ScalarProperty Name="SupervisorUser" ColumnName="SupervisorUser" />
+                <ScalarProperty Name="WillGiveTime" ColumnName="WillGiveTime" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="FinishTime" ColumnName="FinishTime" />
+                <ScalarProperty Name="LimitActivityNo" ColumnName="LimitActivityNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HGRecord_Log">
+            <EntityTypeMapping TypeName="GiftsModel.HGRecord_Log">
+              <MappingFragment StoreEntitySet="HGRecord_Log">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MallId" ColumnName="MallId" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+                <ScalarProperty Name="InvoiceTime" ColumnName="InvoiceTime" />
+                <ScalarProperty Name="HappyGoCardNo" ColumnName="HappyGoCardNo" />
+                <ScalarProperty Name="Point" ColumnName="Point" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="DepartmentNo" ColumnName="DepartmentNo" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="CreateOn" ColumnName="CreateOn" />
+                <ScalarProperty Name="GiveTime" ColumnName="GiveTime" />
+                <ScalarProperty Name="ModifyUser" ColumnName="ModifyUser" />
+                <ScalarProperty Name="HGMId" ColumnName="HGMId" />
+                <ScalarProperty Name="LimitActivityNo" ColumnName="LimitActivityNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MainCategory">
+            <EntityTypeMapping TypeName="GiftsModel.MainCategory">
+              <MappingFragment StoreEntitySet="MainCategory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CategoryNo" ColumnName="CategoryNo" />
+                <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mall">
+            <EntityTypeMapping TypeName="GiftsModel.Mall">
+              <MappingFragment StoreEntitySet="Mall">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MallId" ColumnName="MallId" />
+                <ScalarProperty Name="PosMallId" ColumnName="PosMallId" />
+                <ScalarProperty Name="BonusMall" ColumnName="BonusMall" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IsUse" ColumnName="IsUse" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MiddleCategory">
+            <EntityTypeMapping TypeName="GiftsModel.MiddleCategory">
+              <MappingFragment StoreEntitySet="MiddleCategory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MainNo" ColumnName="MainNo" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CategoryNo" ColumnName="CategoryNo" />
+                <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemExchangeLog">
+            <EntityTypeMapping TypeName="GiftsModel.SystemExchangeLog">
+              <MappingFragment StoreEntitySet="SystemExchangeLog">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Controller" ColumnName="Controller" />
+                <ScalarProperty Name="AId" ColumnName="AId" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PosToken">
+            <EntityTypeMapping TypeName="GiftsModel.PosToken">
+              <MappingFragment StoreEntitySet="PosToken">
+                <ScalarProperty Name="Token" ColumnName="Token" />
+                <ScalarProperty Name="Pos" ColumnName="Pos" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemErrorLog">
+            <EntityTypeMapping TypeName="GiftsModel.SystemErrorLog">
+              <MappingFragment StoreEntitySet="SystemErrorLog">
+                <ScalarProperty Name="IsUse" ColumnName="IsUse" />
+                <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+                <ScalarProperty Name="ModifyUser" ColumnName="ModifyUser" />
+                <ScalarProperty Name="Event" ColumnName="Event" />
+                <ScalarProperty Name="PageName" ColumnName="PageName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsedRule">
+            <EntityTypeMapping TypeName="GiftsModel.UsedRule">
+              <MappingFragment StoreEntitySet="UsedRule">
+                <ScalarProperty Name="ExchangeEnd" ColumnName="ExchangeEnd" />
+                <ScalarProperty Name="ExchangeStart" ColumnName="ExchangeStart" />
+                <ScalarProperty Name="IsDeptContain" ColumnName="IsDeptContain" />
+                <ScalarProperty Name="IsUse" ColumnName="IsUse" />
+                <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+                <ScalarProperty Name="ModifyUser" ColumnName="ModifyUser" />
+                <ScalarProperty Name="CreateOn" ColumnName="CreateOn" />
+                <ScalarProperty Name="UsedEnd" ColumnName="UsedEnd" />
+                <ScalarProperty Name="UsedStart" ColumnName="UsedStart" />
+                <ScalarProperty Name="LimitQuantity" ColumnName="LimitQuantity" />
+                <ScalarProperty Name="LimitPrice" ColumnName="LimitPrice" />
+                <ScalarProperty Name="StartNo" ColumnName="StartNo" />
+                <ScalarProperty Name="MallId" ColumnName="MallId" />
+                <ScalarProperty Name="GId" ColumnName="GId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
