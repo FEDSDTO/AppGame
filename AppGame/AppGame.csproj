@@ -99,6 +99,16 @@
       <DependentUpon>FEDSMBR.edmx</DependentUpon>
       <LastGenOutput>FEDSMBR.cs</LastGenOutput>
     </Content>
+    <Content Include="Models\FEDSPOINTSHOP.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FEDSPOINTSHOP.edmx</DependentUpon>
+      <LastGenOutput>FEDSPOINTSHOP.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\FEDSPOINTSHOP.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FEDSPOINTSHOP.edmx</DependentUpon>
+      <LastGenOutput>FEDSPOINTSHOP.cs</LastGenOutput>
+    </Content>
     <Content Include="Models\Gifts.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Gifts.Context.cs</LastGenOutput>
@@ -124,7 +134,11 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Code\Activity.cs" />
+    <Compile Include="App_Code\CommonUtility.cs" />
     <Compile Include="App_Code\DB_Connection.cs" />
+    <Compile Include="App_Code\Func_Coupon.cs" />
+    <Compile Include="App_Code\Func_CouponEP.cs" />
     <Compile Include="App_Code\Func_EAN13.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\GiftValidationController.cs" />
@@ -159,6 +173,24 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FEDSMBR.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FEDSPOINTSHOP.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FEDSPOINTSHOP.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FEDSPOINTSHOP.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FEDSPOINTSHOP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FEDSPOINTSHOP.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FEDSPOINTSHOP.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FEDSVoucherSalesOrder.cs">
+      <DependentUpon>FEDSPOINTSHOP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Gifts.Context.cs">
       <AutoGen>True</AutoGen>
@@ -196,6 +228,12 @@
     </Compile>
     <Compile Include="Models\Member.cs">
       <DependentUpon>FEDSMBR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MemberFEDSVoucher.cs">
+      <DependentUpon>FEDSPOINTSHOP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MemberFEDSVoucherHistory.cs">
+      <DependentUpon>FEDSPOINTSHOP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MemberGameGift.cs" />
     <Compile Include="Models\MiddleCategory.cs">
@@ -251,6 +289,13 @@
     </EntityDeploy>
     <Content Include="Models\FEDSMBR.edmx.diagram">
       <DependentUpon>FEDSMBR.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\FEDSPOINTSHOP.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FEDSPOINTSHOP.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\FEDSPOINTSHOP.edmx.diagram">
+      <DependentUpon>FEDSPOINTSHOP.edmx</DependentUpon>
     </Content>
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
