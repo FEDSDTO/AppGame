@@ -12,7 +12,7 @@ namespace AppGame.App_Code
     {
         public void Txt(string ex)
         {
-            string sourcePath = @"C:\Website\APPGame\Log" + @"\" + DateTime.Now.ToString("yyyy-MM-dd") + "狀態.txt";       //正式
+            string sourcePath = @"D:\Website\APPGame\Log" + @"\" + DateTime.Now.ToString("yyyy-MM-dd") + "狀態.txt";       //正式
             //string sourcePath = @"C:\Website\APPGame\Log\" + DateTime.Now.ToString("yyyy-MM-dd") + "狀態.txt";     //測試
             //string sourcePath = @"E:\POJHIH\Website\APPGame\Log\" + DateTime.Now.ToString("yyyy-MM-dd") + "狀態.txt";    //本地
             #region  寫入txt檔
