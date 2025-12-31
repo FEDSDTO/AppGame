@@ -57,8 +57,9 @@ namespace AppGame
             }
             catch(Exception ex)
             {
-                string _Error = string.Format("錯誤，原因：{0}；{1}；{2}", ex.Source, ex.Message, ex.StackTrace);
-                return _Error;
+                //string _Error = string.Format("錯誤，原因：{0}；{1}；{2}", ex.Source, ex.Message, ex.StackTrace);
+                //return _Error;
+                throw new Exception($"Func_EAN13_GenerateCouponNo", ex);
             }
         }
 
@@ -81,8 +82,9 @@ namespace AppGame
             }
             catch (Exception ex)
             {
-                string _Error = string.Format("錯誤，原因：{0}；{1}；{2}", ex.Source, ex.Message, ex.StackTrace);
-                return _Error;
+                //string _Error = string.Format("錯誤，原因：{0}；{1}；{2}", ex.Source, ex.Message, ex.StackTrace);
+                //return _Error;
+                throw new Exception($"Func_EAN13_GenerateCouponNoByTypeEP", ex);
             }
         }
 

@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Script.Serialization;
 using AppGame.Models;
+using AppGame.App_Code;
 
 namespace AppGame.Controllers
 {
@@ -15,6 +16,7 @@ namespace AppGame.Controllers
         GiftValidation _GiftValidation = new GiftValidation();
         MemberGameGiftResult _MemberGameGiftResult = new MemberGameGiftResult();
         GiftsEntities _Gifts = new GiftsEntities();
+        CommonUtility commonUtility = new CommonUtility();
 
         public IHttpActionResult Get()
         {
@@ -26,13 +28,7 @@ namespace AppGame.Controllers
             {
                 _MemberGameGiftResult.Status = false;
                 _MemberGameGiftResult.Remark = string.Format("錯誤，原因：{0}；{1}；{2}", ex.Source, ex.Message, ex.StackTrace);
-                _Gifts.SystemExchangeLog.Add(new SystemExchangeLog
-                {
-                    Controller = "APPGameGift",
-                    CreateDate = DateTime.Now,
-                    Message = string.Format("錯誤，原因：{0}；{1}；{2}", ex.Source, ex.Message, ex.StackTrace)
-                });
-                _Gifts.SaveChanges();
+                commonUtility.Txt($"呼叫GiftValidation_Get，錯誤，原因：{ex.Source}；{ex.Message}；{ex.StackTrace}");
                 return Ok(_MemberGameGiftResult);
             }
         }
@@ -83,13 +79,7 @@ namespace AppGame.Controllers
             {
                 _MemberGameGiftResult.Status = false;
                 _MemberGameGiftResult.Remark = string.Format("錯誤，原因：{0}；{1}；{2}", ex.Source, ex.Message, ex.StackTrace);
-                _Gifts.SystemExchangeLog.Add(new SystemExchangeLog
-                {
-                    Controller = "APPGameGift",
-                    CreateDate = DateTime.Now,
-                    Message = string.Format("錯誤，Gid：{0}，原因：{1}；{2}；{3}", Props.GiftId, ex.Source, ex.Message, ex.StackTrace)
-                });
-                _Gifts.SaveChanges();
+                commonUtility.Txt($"呼叫GiftValidation_Post，錯誤，Gid：{Props.GiftId}，原因：{ex.Source}；{ex.Message}；{ex.StackTrace}");
                 return Ok(_MemberGameGiftResult);
             }
         }

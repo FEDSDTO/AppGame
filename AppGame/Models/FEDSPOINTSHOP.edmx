@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FEDSPOINTSHOPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="FEDSVoucherSalesOrder">
+          <Key>
+            <PropertyRef Name="SalesOrderNo" />
+          </Key>
+          <Property Name="SalesOrderNo" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="OrderStatus" Type="int" Nullable="false" />
+          <Property Name="PaymentType" Type="int" Nullable="false" />
+          <Property Name="MemberId" Type="int" Nullable="false" />
+          <Property Name="MallId" Type="int" Nullable="false" />
+          <Property Name="FEDSVoucherId" Type="int" Nullable="false" />
+          <Property Name="TotalQty" Type="int" Nullable="false" />
+          <Property Name="SalesDate" Type="datetime2" Precision="0" Nullable="false" />
+          <Property Name="CarrierType" Type="int" Nullable="false" />
+          <Property Name="CarrierId" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TotalPrice" Type="int" Nullable="false" />
+          <Property Name="TotalHGPoint" Type="int" Nullable="false" />
+          <Property Name="ECPayTradeNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="ECPayPaymentDate" Type="datetime2" Precision="0" />
+          <Property Name="ECPayPaymentType" Type="nvarchar" MaxLength="50" />
+          <Property Name="ECPayTradeDate" Type="datetime2" Precision="0" />
+          <Property Name="ECPayTradeStatus" Type="nvarchar" MaxLength="10" />
+          <Property Name="ECPayCreditRefundId" Type="int" />
+          <Property Name="ECPayRtnCode" Type="int" />
+          <Property Name="ECPayRtnMsg" Type="nvarchar" MaxLength="200" />
+          <Property Name="ECPayCard4no" Type="nchar" MaxLength="4" />
+          <Property Name="CheckECPay" Type="bit" />
+          <Property Name="IsECPaySuccess" Type="bit" />
+          <Property Name="IsHGRedeemSuccess" Type="bit" />
+        </EntityType>
+        <EntityType Name="MemberFEDSVoucher">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberId" Type="int" Nullable="false" />
+          <Property Name="FEDSVoucherSalesOrderNo" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="FEDSVoucherId" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime2" Precision="0" Nullable="false" />
+          <Property Name="VoucherNo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="ExpireDate" Type="datetime2" Precision="0" Nullable="false" />
+          <Property Name="UnitPrice" Type="int" Nullable="false" />
+          <Property Name="HGPoint" Type="int" Nullable="false" />
+          <Property Name="VoucherModifyType" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MemberFEDSVoucherHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberId" Type="int" Nullable="false" />
+          <Property Name="MemberFEDSVoucherId" Type="int" Nullable="false" />
+          <Property Name="SalesOrderNo" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime2" Precision="0" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="IsGenerateInvoice" Type="bit" Nullable="false" />
+          <Property Name="Creator" Type="nvarchar" MaxLength="255" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <Association Name="FK_MemberFEDSVoucher_MemberFEDSVoucher">
+          <End Role="FEDSVoucherSalesOrder" Type="Self.FEDSVoucherSalesOrder" Multiplicity="1" />
+          <End Role="MemberFEDSVoucher" Type="Self.MemberFEDSVoucher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FEDSVoucherSalesOrder">
+              <PropertyRef Name="SalesOrderNo" />
+            </Principal>
+            <Dependent Role="MemberFEDSVoucher">
+              <PropertyRef Name="FEDSVoucherSalesOrderNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MemberFEDSVoucherHistory_MemberFEDSVoucher">
+          <End Role="MemberFEDSVoucher" Type="Self.MemberFEDSVoucher" Multiplicity="1" />
+          <End Role="MemberFEDSVoucherHistory" Type="Self.MemberFEDSVoucherHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberFEDSVoucher">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MemberFEDSVoucherHistory">
+              <PropertyRef Name="MemberFEDSVoucherId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FEDSPOINTSHOPModelStoreContainer">
+          <EntitySet Name="FEDSVoucherSalesOrder" EntityType="Self.FEDSVoucherSalesOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MemberFEDSVoucher" EntityType="Self.MemberFEDSVoucher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MemberFEDSVoucherHistory" EntityType="Self.MemberFEDSVoucherHistory" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_MemberFEDSVoucher_MemberFEDSVoucher" Association="Self.FK_MemberFEDSVoucher_MemberFEDSVoucher">
+            <End Role="FEDSVoucherSalesOrder" EntitySet="FEDSVoucherSalesOrder" />
+            <End Role="MemberFEDSVoucher" EntitySet="MemberFEDSVoucher" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemberFEDSVoucherHistory_MemberFEDSVoucher" Association="Self.FK_MemberFEDSVoucherHistory_MemberFEDSVoucher">
+            <End Role="MemberFEDSVoucher" EntitySet="MemberFEDSVoucher" />
+            <End Role="MemberFEDSVoucherHistory" EntitySet="MemberFEDSVoucherHistory" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FEDSPOINTSHOPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="FEDSVoucherSalesOrder">
+          <Key>
+            <PropertyRef Name="SalesOrderNo" />
+          </Key>
+          <Property Name="SalesOrderNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OrderStatus" Type="Int32" Nullable="false" />
+          <Property Name="PaymentType" Type="Int32" Nullable="false" />
+          <Property Name="MemberId" Type="Int32" Nullable="false" />
+          <Property Name="MallId" Type="Int32" Nullable="false" />
+          <Property Name="FEDSVoucherId" Type="Int32" Nullable="false" />
+          <Property Name="TotalQty" Type="Int32" Nullable="false" />
+          <Property Name="SalesDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CarrierType" Type="Int32" Nullable="false" />
+          <Property Name="CarrierId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TotalPrice" Type="Int32" Nullable="false" />
+          <Property Name="TotalHGPoint" Type="Int32" Nullable="false" />
+          <Property Name="ECPayTradeNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ECPayPaymentDate" Type="DateTime" Precision="0" />
+          <Property Name="ECPayPaymentType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ECPayTradeDate" Type="DateTime" Precision="0" />
+          <Property Name="ECPayTradeStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ECPayCreditRefundId" Type="Int32" />
+          <Property Name="ECPayRtnCode" Type="Int32" />
+          <Property Name="ECPayRtnMsg" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ECPayCard4no" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
+          <Property Name="CheckECPay" Type="Boolean" />
+          <Property Name="IsECPaySuccess" Type="Boolean" />
+          <Property Name="IsHGRedeemSuccess" Type="Boolean" />
+          <NavigationProperty Name="MemberFEDSVoucher" Relationship="Self.FK_MemberFEDSVoucher_MemberFEDSVoucher" FromRole="FEDSVoucherSalesOrder" ToRole="MemberFEDSVoucher" />
+        </EntityType>
+        <EntityType Name="MemberFEDSVoucher">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberId" Type="Int32" Nullable="false" />
+          <Property Name="FEDSVoucherSalesOrderNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FEDSVoucherId" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="VoucherNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="ExpireDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UnitPrice" Type="Int32" Nullable="false" />
+          <Property Name="HGPoint" Type="Int32" Nullable="false" />
+          <Property Name="VoucherModifyType" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="FEDSVoucherSalesOrder" Relationship="Self.FK_MemberFEDSVoucher_MemberFEDSVoucher" FromRole="MemberFEDSVoucher" ToRole="FEDSVoucherSalesOrder" />
+          <NavigationProperty Name="MemberFEDSVoucherHistory" Relationship="Self.FK_MemberFEDSVoucherHistory_MemberFEDSVoucher" FromRole="MemberFEDSVoucher" ToRole="MemberFEDSVoucherHistory" />
+        </EntityType>
+        <EntityType Name="MemberFEDSVoucherHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberId" Type="Int32" Nullable="false" />
+          <Property Name="MemberFEDSVoucherId" Type="Int32" Nullable="false" />
+          <Property Name="SalesOrderNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="IsGenerateInvoice" Type="Boolean" Nullable="false" />
+          <Property Name="Creator" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Remark" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MemberFEDSVoucher" Relationship="Self.FK_MemberFEDSVoucherHistory_MemberFEDSVoucher" FromRole="MemberFEDSVoucherHistory" ToRole="MemberFEDSVoucher" />
+        </EntityType>
+        <Association Name="FK_MemberFEDSVoucher_MemberFEDSVoucher">
+          <End Role="FEDSVoucherSalesOrder" Type="Self.FEDSVoucherSalesOrder" Multiplicity="1" />
+          <End Role="MemberFEDSVoucher" Type="Self.MemberFEDSVoucher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FEDSVoucherSalesOrder">
+              <PropertyRef Name="SalesOrderNo" />
+            </Principal>
+            <Dependent Role="MemberFEDSVoucher">
+              <PropertyRef Name="FEDSVoucherSalesOrderNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MemberFEDSVoucherHistory_MemberFEDSVoucher">
+          <End Role="MemberFEDSVoucher" Type="Self.MemberFEDSVoucher" Multiplicity="1" />
+          <End Role="MemberFEDSVoucherHistory" Type="Self.MemberFEDSVoucherHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberFEDSVoucher">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MemberFEDSVoucherHistory">
+              <PropertyRef Name="MemberFEDSVoucherId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FEDSPOINTSHOPEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="FEDSVoucherSalesOrder" EntityType="Self.FEDSVoucherSalesOrder" />
+          <EntitySet Name="MemberFEDSVoucher" EntityType="Self.MemberFEDSVoucher" />
+          <EntitySet Name="MemberFEDSVoucherHistory" EntityType="Self.MemberFEDSVoucherHistory" />
+          <AssociationSet Name="FK_MemberFEDSVoucher_MemberFEDSVoucher" Association="Self.FK_MemberFEDSVoucher_MemberFEDSVoucher">
+            <End Role="FEDSVoucherSalesOrder" EntitySet="FEDSVoucherSalesOrder" />
+            <End Role="MemberFEDSVoucher" EntitySet="MemberFEDSVoucher" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemberFEDSVoucherHistory_MemberFEDSVoucher" Association="Self.FK_MemberFEDSVoucherHistory_MemberFEDSVoucher">
+            <End Role="MemberFEDSVoucher" EntitySet="MemberFEDSVoucher" />
+            <End Role="MemberFEDSVoucherHistory" EntitySet="MemberFEDSVoucherHistory" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FEDSPOINTSHOPModelStoreContainer" CdmEntityContainer="FEDSPOINTSHOPEntities">
+          <EntitySetMapping Name="FEDSVoucherSalesOrder">
+            <EntityTypeMapping TypeName="FEDSPOINTSHOPModel.FEDSVoucherSalesOrder">
+              <MappingFragment StoreEntitySet="FEDSVoucherSalesOrder">
+                <ScalarProperty Name="SalesOrderNo" ColumnName="SalesOrderNo" />
+                <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
+                <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="MallId" ColumnName="MallId" />
+                <ScalarProperty Name="FEDSVoucherId" ColumnName="FEDSVoucherId" />
+                <ScalarProperty Name="TotalQty" ColumnName="TotalQty" />
+                <ScalarProperty Name="SalesDate" ColumnName="SalesDate" />
+                <ScalarProperty Name="CarrierType" ColumnName="CarrierType" />
+                <ScalarProperty Name="CarrierId" ColumnName="CarrierId" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="TotalHGPoint" ColumnName="TotalHGPoint" />
+                <ScalarProperty Name="ECPayTradeNo" ColumnName="ECPayTradeNo" />
+                <ScalarProperty Name="ECPayPaymentDate" ColumnName="ECPayPaymentDate" />
+                <ScalarProperty Name="ECPayPaymentType" ColumnName="ECPayPaymentType" />
+                <ScalarProperty Name="ECPayTradeDate" ColumnName="ECPayTradeDate" />
+                <ScalarProperty Name="ECPayTradeStatus" ColumnName="ECPayTradeStatus" />
+                <ScalarProperty Name="ECPayCreditRefundId" ColumnName="ECPayCreditRefundId" />
+                <ScalarProperty Name="ECPayRtnCode" ColumnName="ECPayRtnCode" />
+                <ScalarProperty Name="ECPayRtnMsg" ColumnName="ECPayRtnMsg" />
+                <ScalarProperty Name="ECPayCard4no" ColumnName="ECPayCard4no" />
+                <ScalarProperty Name="CheckECPay" ColumnName="CheckECPay" />
+                <ScalarProperty Name="IsECPaySuccess" ColumnName="IsECPaySuccess" />
+                <ScalarProperty Name="IsHGRedeemSuccess" ColumnName="IsHGRedeemSuccess" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MemberFEDSVoucher">
+            <EntityTypeMapping TypeName="FEDSPOINTSHOPModel.MemberFEDSVoucher">
+              <MappingFragment StoreEntitySet="MemberFEDSVoucher">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="FEDSVoucherSalesOrderNo" ColumnName="FEDSVoucherSalesOrderNo" />
+                <ScalarProperty Name="FEDSVoucherId" ColumnName="FEDSVoucherId" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="VoucherNo" ColumnName="VoucherNo" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ExpireDate" ColumnName="ExpireDate" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="HGPoint" ColumnName="HGPoint" />
+                <ScalarProperty Name="VoucherModifyType" ColumnName="VoucherModifyType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MemberFEDSVoucherHistory">
+            <EntityTypeMapping TypeName="FEDSPOINTSHOPModel.MemberFEDSVoucherHistory">
+              <MappingFragment StoreEntitySet="MemberFEDSVoucherHistory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="MemberFEDSVoucherId" ColumnName="MemberFEDSVoucherId" />
+                <ScalarProperty Name="SalesOrderNo" ColumnName="SalesOrderNo" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="IsGenerateInvoice" ColumnName="IsGenerateInvoice" />
+                <ScalarProperty Name="Creator" ColumnName="Creator" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

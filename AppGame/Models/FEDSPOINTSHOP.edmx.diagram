@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5d1e2fdfd968468394bef4a6d8661fbd" Name="Diagram1">
+        <EntityTypeShape EntityType="FEDSPOINTSHOPModel.FEDSVoucherSalesOrder" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FEDSPOINTSHOPModel.MemberFEDSVoucher" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FEDSPOINTSHOPModel.MemberFEDSVoucherHistory" Width="1.5" PointX="5.25" PointY="2.5" IsExpanded="true" />
+        <AssociationConnector Association="FEDSPOINTSHOPModel.FK_MemberFEDSVoucher_MemberFEDSVoucher" ManuallyRouted="false" />
+        <AssociationConnector Association="FEDSPOINTSHOPModel.FK_MemberFEDSVoucherHistory_MemberFEDSVoucher" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
