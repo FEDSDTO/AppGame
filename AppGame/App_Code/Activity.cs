@@ -242,8 +242,8 @@ namespace AppGame.App_Code
             // Type = L (摸彩券)，Insert into Coupon & CouponLog
             // Type = EP (來店禮)，點加金票券 有填寫住址則送，沒填改送抵用券
             int _TargetMemberId = 1;        //指定會員ID
-            //int _TargetGId = 11633;         // 正式 //改送抵用券(寫死Gid)
-            int _TargetGId = 1688;         // 測試 //改送抵用券(寫死Gid)
+            int _TargetGId = 11633;         // 正式 //改送抵用券(寫死Gid)
+            //int _TargetGId = 1688;         // 測試 //改送抵用券(寫死Gid)
 
             string _GiftsType = Gifts.Type; //紀錄更動後的GiftsType
             string MallId = "10";
@@ -259,11 +259,11 @@ namespace AppGame.App_Code
                 switch (Props.GiftId)
                 {
                     //正式
-                    //case "11678":    //MD甜甜圈券
-                    //    _FEDSVoucherId = 409;
+                    case "11678":    //MD甜甜圈券
+                        _FEDSVoucherId = 409;
                     //測試
-                    case "1695":    //MD甜甜圈券
-                        _FEDSVoucherId = 90;
+                    //case "1695":    //MD甜甜圈券
+                    //    _FEDSVoucherId = 90;
                         switch (_Member.City)
                         {
                             case "台北市":
@@ -309,11 +309,11 @@ namespace AppGame.App_Code
                         }
                         break;
                     //正式
-                    //case "11680":    //NIKE 100元十足券
-                    //    _FEDSVoucherId = 407;
+                    case "11680":    //NIKE 100元十足券
+                        _FEDSVoucherId = 407;
                     //測試
-                    case "1693":    //NIKE 100元十足券
-                        _FEDSVoucherId = 92;
+                    //case "1693":    //NIKE 100元十足券
+                    //    _FEDSVoucherId = 92;
                         switch (_Member.City)
                         {
                             case "台北市":
@@ -370,11 +370,11 @@ namespace AppGame.App_Code
                         }
                         break;
                     //正式
-                    //case "11679":    //台隆 100元十足券
-                    //    _FEDSVoucherId = 408;
+                    case "11679":    //台隆 100元十足券
+                        _FEDSVoucherId = 408;
                     //測試
-                    case "1694":    //台隆 100元十足券
-                        _FEDSVoucherId = 91;
+                    //case "1694":    //台隆 100元十足券
+                    //    _FEDSVoucherId = 91;
                         switch (_Member.City)
                         {
                             case "台北市":
@@ -410,11 +410,11 @@ namespace AppGame.App_Code
                         }
                         break;
                     //正式
-                    //case "11676":    //歐舒丹護手霜 30ml
-                    //    _FEDSVoucherId = 411;
+                    case "11676":    //歐舒丹護手霜 30ml
+                        _FEDSVoucherId = 411;
                     //測試
-                    case "1691":    //歐舒丹護手霜 30ml
-                        _FEDSVoucherId = 94;
+                    //case "1691":    //歐舒丹護手霜 30ml
+                    //    _FEDSVoucherId = 94;
                         switch (_Member.City)
                         {
                             case "台北市":
@@ -462,11 +462,11 @@ namespace AppGame.App_Code
                         }
                         break;
                     //正式
-                    //case "11677":    //商開 酪梨油
-                    //    _FEDSVoucherId = 410;
+                    case "11677":    //商開 酪梨油
+                        _FEDSVoucherId = 410;
                     //測試
-                    case "1692":    //商開 酪梨油
-                        _FEDSVoucherId = 93;
+                    //case "1692":    //商開 酪梨油
+                    //    _FEDSVoucherId = 93;
                         switch (_Member.City)
                         {
                             case "台北市":
